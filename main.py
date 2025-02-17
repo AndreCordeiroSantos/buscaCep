@@ -113,26 +113,26 @@ def gerar_pdf(resultados, caminho_pdf):
     
     c.save()
 
-def login_gmail(driver, email, password):
-    driver.get("https://gmail.com")
+# def login_gmail(driver, email, password):
+#     driver.get("https://gmail.com")
     
-    try:
-        # Espera explícita para garantir que o campo de email esteja presente
-        email_field = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "identifierId"))
-        )
-        email_field.send_keys(email)
-        email_field.send_keys(Keys.RETURN)
+#     try:
+#         # Espera explícita para garantir que o campo de email esteja presente
+#         email_field = WebDriverWait(driver, 10).until(
+#             EC.presence_of_element_located((By.ID, "identifierId"))
+#         )
+#         email_field.send_keys(email)
+#         email_field.send_keys(Keys.RETURN)
         
-        # Espera explícita para garantir que o campo de senha esteja presente
-        password_field = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.NAME, "Passwd"))
-        )
-        password_field.send_keys(password)
-        password_field.send_keys(Keys.RETURN)
+#         # Espera explícita para garantir que o campo de senha esteja presente
+#         password_field = WebDriverWait(driver, 10).until(
+#             EC.presence_of_element_located((By.NAME, "Passwd"))
+#         )
+#         password_field.send_keys(password)
+#         password_field.send_keys(Keys.RETURN)
         
-    except Exception as e:
-        print(f"Erro ao fazer login no Gmail: {e}")
+    # except Exception as e:
+    #     print(f"Erro ao fazer login no Gmail: {e}")
 
 if __name__ == "__main__":
     base_path = os.path.dirname(__file__)
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     caminho_pdf = os.path.join(base_path, 'relatorio_resultados.pdf')
     gerar_pdf(resultados, caminho_pdf)
     
-    ## Fazer login no Gmail
+    ## Fazer login no Gmail via PYAUTOGUI
     def abrir_edge():
         # Abrir o Executar
         pyautogui.hotkey('win', 'r')
@@ -213,11 +213,11 @@ if __name__ == "__main__":
             # Digitar o corpo do email
             corpo_email = """Olá,
 
-    Aqui estão os resultados do CEP solicitado.
-    Atenciosamente,
-    Sua Empresa
+            Aqui estão os resultados do CEP solicitado.
+            Atenciosamente,
+            Sua Empresa
 
-    Email criado e feito por André Cordeiro."""
+            Email criado e feito por André Cordeiro."""
             pyautogui.typewrite(corpo_email)
             time.sleep(1)
             
@@ -248,7 +248,7 @@ if __name__ == "__main__":
         acessar_gmail()
         
         # Fazer login no Gmail
-        login_gmail("htkhaelphotos@gmail.com", "somores013")
+        login_gmail("*exemploemailDeEnvio@gmail.com", "*senha email para login")
         
         # Enviar o email com o anexo
-        enviar_email("andrecordeiro.inf@gmail.com", "envio de resultados", "C:\\Users\\André Rafael\\Documents\\projetos\\busca-cep\\resultados.csv")
+        enviar_email("*exemplodeemail@gmail.com", "Assunto email", "#caminho do arquivo")
